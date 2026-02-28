@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Project insertion</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light">
+
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+            <div class="card shadow-lg p-4 rounded-4" style="max-width: 400px; width: 100%;">
+                <h2 class="text-center mb-4 text-primary">Developer Bloods</h2>
+
+                <form id="AdminForm" enctype="multipart/form-data">
+
+                    <!-- Employee Name -->
+                    <label for="pro-img" class="form-label ">image</label>
+                    <input class="form-control form-control-sm w-75 mb-3" type="file" accept="image/*" id="pro-img" name="pro-img" required>
+
+
+                    <div class="row">
+                        <label for="pro-name" class="form-label col-6">Name</label>
+                        <label for="price"  class="form-label col-6">Price</label>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <input type="text" class="form-control form-control-sm" id="pro-name" name="pro-name" required>
+                             <div class="form-text">Project name</div>
+                        </div>
+                        <div class="col-6">
+                            <input type="number" class="form-control form-control-sm" id="price" name="price" min="2500" required>
+                           
+                        </div>
+                    </div>                    
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-around">
+                        <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.getElementById("AdminForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const form = document.getElementById("AdminForm");
+                const formData = new FormData(form); // keep as FormData
+
+                fetch("ProjectRegister", {
+                    method: "POST",
+                    body: formData
+                })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("Error submitting form");
+                        });
+            });
+
+
+        </script>
+
+    </body>
+</html>

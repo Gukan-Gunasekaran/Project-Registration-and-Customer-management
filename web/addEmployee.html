@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Employee Administration</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light">
+
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+            <div class="card shadow-lg p-4 rounded-4" style="max-width: 400px; width: 100%;">
+                <h2 class="text-center mb-4 text-primary">Developer Bloods</h2>
+
+                <form id="AdminForm" enctype="multipart/form-data">
+
+                    <!-- Employee Name -->
+                    <label for="img" class="form-label ">image</label>
+                    <input class="form-control form-control-sm w-75 mb-3" type="file" accept="image/*" id="img" name="image" required>
+
+
+                    <div class="row">
+                        <label for="emp-name" class="form-label col-6">Name</label>
+                        <label for="ph-no"  class="form-label col-6">Phone</label>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <input type="text" class="form-control form-control-sm" id="emp-name" name="e-name" required>
+                        </div>
+                        <div class="col-6">
+                            <input type="number" class="form-control form-control-sm" id="ph-no" name="phone" min="0000000000" max="9999999999" pattern="[0-9]{10}" required>
+                            <div class="form-text">Enter a 10-digit mobile number.</div>
+                        </div>
+                    </div>
+
+
+                    <!-- Phone -->
+
+
+                    <!-- Experience -->
+                    <div class="row">
+                        <label for="exp" class="form-label col-6">Job Role:</label>
+                        <label for="job" class="form-label col-6">Experience:</label>
+
+                    </div>
+
+                    <!-- Job Role -->
+                    <div class="row mb-3">
+
+                        <select class="form-select form-select-sm w-50 col-6" id="job" name="job">
+                            <option value="Development">Developer</option>
+                            <option value="Testing">Testing</option>
+                            <option value="Project Management">Project Manager</option>
+                            <option value="hr">Human Resource</option>
+                        </select>
+
+                        <select class="form-select form-select-sm w-50 col-6" id="exp" name="exp">
+                            <option value="0-1">0-2 years</option>
+                            <option value="2-4">2-4 years</option>
+                            <option value="4-8">4-8 years</option>
+                            <option value="8+">8+ years</option>
+                        </select>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="mb-3">
+                        <label class="form-label d-block">Gender</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="M" required>
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline mb-3">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="F">
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-around">
+                        <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.getElementById("AdminForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const form = document.getElementById("AdminForm");
+                const formData = new FormData(form); // keep as FormData
+
+                fetch("EmployeeRegister", {
+                    method: "POST",
+                    body: formData
+                })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("Error submitting form");
+                        });
+            });
+
+
+        </script>
+
+    </body>
+</html>

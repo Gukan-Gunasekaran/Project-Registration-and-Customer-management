@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Admin Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
+
+  <div class="card shadow-lg border-0 rounded-4" style="max-width: 400px; width: 100%;">
+    <div class="card-header bg-danger text-white text-center rounded-top-4">
+      <h3 class="mb-0">Dev-Blo Admin Login</h3>
+    </div>
+    <div class="card-body p-4">
+      <form id="loginForm">
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="mail" class="form-label">E-mail</label>
+          <input type="email" id="mail" name="mail" class="form-control" placeholder="admin@gmail.com" required>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="pass" class="form-label">Password</label>
+          <input type="password" id="pass" name="password" class="form-control" placeholder="••••••••" required>
+        </div>
+
+        <!-- Add Admin Link -->
+        <div class="mb-3 text-end">
+          <small><a href="#">Add an admin?</a></small>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between">
+          <button type="reset" class="btn btn-outline-secondary">Reset</button>
+          <button type="submit" class="btn btn-success">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS Login Script -->
+  <script>
+    document.getElementById("loginForm")
+      .addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+
+        fetch("AdminLogin", {
+          method: "POST",
+          body: new URLSearchParams(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            window.location.href = "staffs.html";
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch(err => console.error("Error:", err));
+    });
+  </script>
+</body>
+</html>

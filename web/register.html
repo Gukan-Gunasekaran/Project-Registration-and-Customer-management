@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev-Bloods Sign-in</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg rounded-4 col-12 col-sm-6 col-md-6 col-lg-3 w-30 border-dark">
+        <div class="card-header text-white text-center" style="background: linear-gradient(135deg, #d90429, #ef233c);">
+        <h3 class="mb-0">Registration</h3>
+      </div>
+      <div class="card-body p-4">
+
+        <form action="Registration" method="get">
+            <label for="img" class="form-label">Img:</label>
+            <input id="img" type="file" class="form-control form-control-sm mb-1" name="image">
+          <!-- Name -->
+        <div class="row align-items-center">
+            <label for="name" class="col-sm-3 col-form-label text-nowrap">Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control form-control-sm border-primary w-30" id="name" name="u-name" placeholder="Gukan" required>
+            </div>
+        </div>
+          <!-- Age -->
+          
+        <div class="row align-items-center">
+            <label for="age" class="col-sm-3 col-form-label text-nowrap">Age</label>
+            <div class="col-sm-9">
+                <input type="number" class="form-control form-control-sm border-primary w-30" id="age" name="age" min="18" max="60" placeholder="age (18-60)" required>
+            </div>
+        </div>
+
+          <!-- Email -->
+        <div class="row align-items-center">
+            <label for="mail" class="col-sm-3 col-form-label text-nowrap">E-mail</label>
+            <div class="col-sm-9">
+                <input type="email" class="form-control form-control-sm border-primary w-30" id="mail" name="mail" placeholder="******@gmail.com" required>
+            </div>
+         </div>
+
+          <!-- Password -->
+          <div class="row align-items-center">
+            <label for="pass" class="col-sm-4 col-form-label text-nowrap">Password</label>
+            <div class="col-sm-8">
+            <input type="password" class="form-control form-control-sm border-primary w-30" id="pass" name="pass" 
+              minlength="8" maxlength="12" 
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*]).{8,}" 
+              placeholder="8-12 chars, include number & symbol" required>
+              </div>
+            </div>
+
+          <!-- Re-type Password -->
+          <div class="row align-items-center">
+            <label for="re-pass" class="col-sm-3 col-form-label text-nowrap">Re-type</label>
+            <div class="col-sm-9">
+            <input type="password" class="form-control form-control-sm border-primary w-30" id="re-pass" name="rPass" minlength="8" maxlength="12" required>
+            </div>
+          </div>
+
+          <!-- Gender -->
+          <div>
+            <label class="form-label d-block">Gender</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="male" name="gender" value="M" required>
+              <label class="form-check-label" for="male">Male</label>
+            </div>
+            
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="female" name="gender" value="F">
+              <label class="form-check-label" for="female">Female</label>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex justify-content-center">
+            <button type="reset" class="btn btn-outline-danger btn-sm me-1">Reset</button>
+            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

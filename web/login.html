@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevBlo login</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+
+<body class="bg-dark d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg border-0" style="width:22rem; border-radius: 1rem; overflow:hidden;"> 
+    <div class="card-header text-white text-center" style="background: linear-gradient(135deg, #d90429, #ef233c);">
+      <h2 class="fw-bold mb-0">Developer Bloods</h2>
+    </div>
+
+    <div class="card-body bg-light">
+      <form id="loginForm">
+
+        <div class="mb-3">
+          <label for="mail" class="form-label fw-semibold text-dark">E-mail</label>
+          <input type="email" id="mail" placeholder="********@gmail.com" class="form-control shadow-sm" name="mail">
+        </div>
+
+        <div class="mb-3">
+          <label for="pw" class="form-label fw-semibold text-dark">Password</label>
+          <input type="password" id="pw" placeholder="Enter your password" class="form-control shadow-sm" name="password">
+        </div>
+
+        <p class="small text-center">
+          Don’t have an account? 
+          <a href="register.html" class="text-danger text-decoration-none fw-semibold">Register</a>
+        </p>
+
+        <div class="text-center">
+          <input type="reset" id="res" class="btn btn-outline-danger btn-sm px-4 me-2 shadow-sm">
+          <input type="submit" id="sum" class="btn btn-danger btn-sm px-4 shadow-sm">
+        </div>
+      </form>       
+    </div>  
+  </div>  
+</body>
+
+<script>
+
+    document.getElementById("loginForm")
+            .addEventListener("submit",function(event){
+                event.preventDefault();
+        const formData=new FormData(this);
+        fetch("login",{
+            method:"post",
+            body:new URLSearchParams(formData)
+        })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success){
+                        
+                     alert("Login Successfull");
+                     window.location.href="profile.html";
+                    }else{
+                        alert(data.message);
+                    }
+        })
+                .catch(err => console.error("Error:",err));
+    });
+    
+</script>
+</html>

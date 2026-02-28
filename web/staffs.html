@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>staffs info</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css" >
+    </head>
+    <body>
+        <br>
+        <div>
+            <h2>STAFFS</h2>  
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table id="dataTable" class="table table-bordered table-hover mx-auto" style="width:80%; border-radius: 10%;">       
+            </table>
+        </div>
+        <br>
+
+        <div id="input-area" style="display:none;margin-top: 10px;">
+            <center>
+                <label for="staff-id">Enter Staff id:</label>
+                <input type="number" min="1020" max="99999" id="staff-id">
+                <button id="submit-btn" class="btn btn-primary btn-sm">Submit</button>
+            </center>
+        </div>
+
+        <div class="sticky-bottom bg-light py-2 container d-flex justify-content-center">  
+            <div>
+                <a href="addEmployee.html" class="btn bg-primary text-white">+ Add</a>
+                <button class="btn bg-danger text-light" id="remove" name="remove">- Remove</button>
+                <a href="projects.html" class="btn btn-secondary">PROJECTS</a>
+            </div>         
+        </div>
+
+        <script>
+            async function loadTable() {
+                const response = await fetch('Staffs');
+                const data = await response.json();
+
+                if (!data || data.length === 0) {
+                    document.getElementById("dataTable").innerHTML = "<tr><td>No data</td></tr>";
+                    return;
+                }
+
+                const headers = Object.keys(data[0]);
+                let tableHTML = "<thead><tr>" +
+                        headers.map(h => `<th style="background-color:orangered;" class="text-white text-uppercase">${h}</th>`).join("") +
+                        "</tr></thead><tbody>";
+
+                data.forEach(row => {
+                    tableHTML += "<tr>" +
+                            headers.map(h => {
+                                if (h.toLowerCase() === "image") {
+                                    return `<td><img src="${row[h]}" width="100" onerror="this.src='default.png';" /></td>`;
+                                } else {
+                                    return `<td>${row[h]}</td>`;
+                                }
+                            }).join("") +
+                            "</tr>";
+                });
+
+                tableHTML += "</tbody>";
+                document.getElementById("dataTable").innerHTML = tableHTML;
+            }
+
+            loadTable();
+
+            const showInputBtn = document.getElementById("remove");
+            const inputArea = document.getElementById("input-area");
+            const submitBtn = document.getElementById("submit-btn");
+
+            showInputBtn.addEventListener("click", function () {
+                inputArea.style.display = "block";
+            });
+
+            submitBtn.addEventListener("click", function () {
+                const staffId = document.getElementById("staff-id").value.trim();
+
+                if (staffId === "") {
+                    alert("Please enter a staff ID!");
+                    return;
+                }
+
+                const params = new URLSearchParams();
+                params.append("staff-id", staffId);
+
+                fetch("StaffRemoval", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: params
+                })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.action) {
+                                alert(data.message);
+                                location.reload();
+                            } else {
+                                alert("Error: " + data.message);
+                            }
+                        })
+                        .catch(err => {
+                            console.error("Error:", err);
+                            alert("Something went wrong. Please try again later.");
+                        });
+            });
+
+
+        </script>
+    </body>
+</html>

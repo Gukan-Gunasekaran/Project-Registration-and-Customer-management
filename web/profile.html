@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>profile page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
+
+
+
+    <body class="bg-dark d-flex justify-content-center align-items-center vh-100">
+
+        <div class="card border-dark shadow-lg w-lg-50 rounded" >
+            <!-- Card Header -->
+            <div class="card-header text-white text-center fw-bold d-flex justify-content-center align-items-center" 
+                 style="border-top-left-radius: 15px;
+                 border-top-right-radius: 15px;
+                 height: 75px;
+                 background: linear-gradient(135deg, #d90429, #ef233c);">
+                <h2>DEVELOPER BLOODS</h2>
+            </div>
+        
+
+
+        <!-- Card Body -->
+        <div class="card-body bg-light">
+            <div class="d-flex align-items-center rounded p-2 mb-3">
+                <img src="images/brand-logo.jpg" 
+                     class="border border-dark rounded me-3" 
+                     height="90" width="90" alt="Profile Picture"
+                    >
+                <div class="fw-bold text-dark fs-5 text-decoration-underline">Profile</div>
+            </div>
+
+            <hr class="border-2 border-dark border-dashed" style="line-height:1; margin: 0; padding:0;">
+
+            <table class="table table-borderless mb-0">
+                <tbody>
+                    <tr><td id="name" class="fw-semibold">Name:</td></tr>
+                    <tr><td id="age" class="fw-semibold">Age:</td></tr>
+                    <tr><td id="mail" class="fw-semibold">Mail:</td></tr>
+                    <tr><td id="gender" class="fw-semibold">Gender:</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer text-center bg-white">
+            <a href="deletion.html" id="delete" 
+               class="text-danger text-decoration-none fw-semibold">
+                Delete your account
+            </a>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    fetch("Profile")
+            .then(response => {
+                if (!response.ok) {
+                    window.location.href = "login.html"; // redirect to login if not authorized
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data)
+                    return; // in case you already redirected
+                data.forEach(user => {
+                    document.getElementById("name").textContent += `${user.name}`;
+                    document.getElementById("age").textContent += `${user.age}`;
+                    document.getElementById("mail").textContent += `${user.mail}`;
+                    document.getElementById("gender").textContent += `${user.gender}`;
+                });
+            })
+            .catch(error => console.error('Error:', error));
+</script>
+
+</body>
+
+</html>

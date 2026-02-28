@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Account Deletion</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="styleSheet" href="css/bootstrap.min.css">
+    </head>
+    <body>
+        <form action="DeleteAccount" method="POST">
+            <div class="position-absolute top-50 start-50 translate-middle">
+                <div>
+                    <label for="pass">Enter your password:</label>
+                    <input type="password" name="pass" id="pass" class="border border-primary">
+               </div>
+                <br>
+               <div class="position-absolute" style="left: 25%">
+                   <button type="reset" class="me-2 btn btn-sm btn-outline-danger">reset</button> 
+                    <button type="submit" class="border btn btn-sm btn-success">Submit</button>
+               </div> 
+            </div>         
+        </form>
+        
+        <script>     
+            document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const password = document.getElementById("pass").value;
+            const confirmed = confirm("Please confirm account deletion");
+
+            if (!confirmed) return;
+
+            fetch("DeleteAccount", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "pass=" + encodeURIComponent(password)
+            })
+                .then(response => response.text())
+                .then(data => {  
+                if (data.includes("successfully")){
+                    
+                    const successed=alert("account deleted successfully");
+                    window.location.href = "index.html";
+                } else {
+                    alert("❌ incorrect password"); // Only show alert if password is wrong
+                }
+            })
+              .catch(error => {
+              console.error("Error:", error);
+           });
+        });            
+        </script>
+
+    </body>
+</html>
+
+
