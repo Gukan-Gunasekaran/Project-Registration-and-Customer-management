@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
-  <title>Aandavar solutions</title>
+  <title> Developer Bloods </title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,14 +19,14 @@
   
 </head>
 
-<body class="bg-dark">
+<body>
 
   <!-- Header -->
   <header>
     <div class="text-light text-center py-4 border-bottom border-dark" style="background-color: red;height: 100px;
     border: 1px solid black;
     padding-top: 30px;">
-      <h1>Aandavar Solutions</h1>
+      <h1>Developer Bloods</h1>
     </div>  
 
     <!-- Navbar -->
@@ -39,13 +39,13 @@
           
           
           <li class="nav-item dropdown dropdown-hover">
-                 <a href="#" class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown">Services</a>
+                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
                  <ul class="dropdown-menu">
                      <li><a class="dropdown-item" href="#">Web Technologies</a></li>
                      <li><a class="dropdown-item" href="#">Android Development</a></li>
                  </ul>
           </li>
-          <li class="nav-item"><a href="Adminlogin.html" class="nav-link text-light">Administration</a></li>
+          <li class="nav-item"><a href="admin-login.html" class="nav-link text-light">Administration</a></li>
           <li class="nav-item"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=gunaguku@gmail.com" class="nav-link text-light">Help</a></li>
           
         </ul>
@@ -59,19 +59,19 @@
   </header>
 
   <!-- Offcanvas Menu -->
-  <div class="offcanvas offcanvas-end bg-light" tabindex="-1" id="menuOffcanvas" style="width: 200px;">
+  <div class="offcanvas offcanvas-end bg-body" tabindex="-1" id="menuOffcanvas" style="width: 200px;">
       <div class="offcanvas-header text-dark" style="background-color: red;">
       <h2 class="offcanvas-title text-light">MENU</h2>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
       <ul class="list-unstyled">
-        <li><a href="profile.html" class="btn btn-outline-dark w-100 mb-1">Profile</a></li>
+        <li><a href="profile.html" class="btn  w-100 mb-1">Profile</a></li>
         
         <!-- Dropdown inside Offcanvas -->
         
         <div class="dropdown mb-2">
-          <button class="btn btn-outline-success text-dark dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">
+          <button class="btn dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">
             Settings
           </button>
           <ul class="dropdown-menu">
@@ -80,19 +80,19 @@
           </ul>
         </div>
 
-        <li><a href="register.html" class="btn btn-outline-dark w-100 mb-1">Sign-in</a></li>
+        <li><a href="register.html" class="btn w-100 mb-1">Sign-in</a></li>
         
        
         
         <li>
-            <label class="w-100 mb-1">
+            <div class="form-check form-switch">                                  
+               <input class="form-check-input" type="checkbox" id="switch1">
+                <label class="form-check-label" for="switch1">
                   Theme
-                  <label class="form-check form-switch">
-                   <input class="form-check-input" type="checkbox" id="switch1">
-               </label>
-            </label>
+               </label>   
+            </div>                                                         
         </li>
-        
+         <br> <br>
             
             <li><a id="logout" href="#" class="btn btn-outline-danger w-100">Log out</a></li>
       </ul>
@@ -108,9 +108,9 @@
       </span>
                                     
       <div class="align-self-end ms-3">
-        <h3 class="text-light">
+          <h3>
           Hey Vendors and Vandees, I'm <b>Gukan Gunasekaran</b>,<br>
-          The Founder of Aandavar Solutions.<br>
+          The Founder of Developer Bloods.<br>
           We are providing web & app products and services<br>
           for Android and Native Android applications.  
         </h3>          
@@ -129,6 +129,7 @@
 
   <!-- Bootstrap JS -->
   <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="theme.js"></script>
 
   <!-- Logout script -->
   <script>

@@ -14,7 +14,7 @@
       <h3 class="mb-0">Dev-Blo Admin Login</h3>
     </div>
     <div class="card-body p-4">
-      <form id="loginForm">
+      <form id="login-form">
         <!-- Email -->
         <div class="mb-3">
           <label for="mail" class="form-label">E-mail</label>
@@ -43,10 +43,11 @@
 
   <!-- Bootstrap JS -->
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="theme.js"></script>
 
   <!-- JS Login Script -->
   <script>
-    document.getElementById("loginForm")
+    document.getElementById("login-form")
       .addEventListener("submit", function(event) {
         event.preventDefault();
         const formData = new FormData(this);

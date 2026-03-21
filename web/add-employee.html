@@ -12,7 +12,7 @@
             <div class="card shadow-lg p-4 rounded-4" style="max-width: 400px; width: 100%;">
                 <h2 class="text-center mb-4 text-primary">Developer Bloods</h2>
 
-                <form id="AdminForm" enctype="multipart/form-data">
+                <form id="admin-form" enctype="multipart/form-data">
 
                     <!-- Employee Name -->
                     <label for="img" class="form-label ">image</label>
@@ -86,11 +86,12 @@
         </div>
 
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="theme.js"></script>
         <script>
-            document.getElementById("AdminForm").addEventListener("submit", function (event) {
+            document.getElementById("admin-form").addEventListener("submit", function (event) {
                 event.preventDefault();
 
-                const form = document.getElementById("AdminForm");
+                const form = document.getElementById("admin-form");
                 const formData = new FormData(form); // keep as FormData
 
                 fetch("EmployeeRegister", {

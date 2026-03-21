@@ -6,13 +6,14 @@
         <title>Project insertion</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
+    
     <body class="bg-light">
 
         <div class="container d-flex justify-content-center align-items-center min-vh-100">
             <div class="card shadow-lg p-4 rounded-4" style="max-width: 400px; width: 100%;">
                 <h2 class="text-center mb-4 text-primary">Developer Bloods</h2>
 
-                <form id="AdminForm" enctype="multipart/form-data">
+                <form id="admin-form" enctype="multipart/form-data">
 
                     <!-- Employee Name -->
                     <label for="pro-img" class="form-label ">image</label>
@@ -44,6 +45,7 @@
         </div>
 
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="theme.js"></script>
         <script>
             document.getElementById("AdminForm").addEventListener("submit", function (event) {
                 event.preventDefault();
@@ -64,8 +66,6 @@
                             alert("Error submitting form");
                         });
             });
-
-
         </script>
 
     </body>
