@@ -9,11 +9,18 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import javax.servlet.http.Part;
+import javax.servlet.annotation.MultipartConfig;
+
+import java.io.InputStream;
+
+
 import java.sql.*;
 
 import org.json.JSONObject;
 
 @WebServlet(urlPatterns = {"/Registration"})
+@MultipartConfig
 public class Registration extends HttpServlet {
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/devbloods_db";
@@ -40,6 +47,10 @@ public class Registration extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         // Retrieve request parameters from HTML
+        Part imgFile = request.getPart("image");
+
+// Convert Part → InputStream
+        InputStream imgStream = imgFile.getInputStream();
         String name = request.getParameter("u-name");
         String mail = request.getParameter("mail");
         String pass = request.getParameter("pass");
@@ -57,13 +68,14 @@ public class Registration extends HttpServlet {
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
 
                 // Insert user into database
-                String insertSQL = "INSERT INTO registration(name, age, mail, gender,password) VALUES (?, ?, ?, ?, ?)";
+                String insertSQL = "INSERT INTO registration(name, age, mail, gender,password,image) VALUES (?, ?, ?, ?, ?,?)";
                 try (PreparedStatement ps = conn.prepareStatement(insertSQL)) {
                     ps.setString(1,name);
                     ps.setInt(2, age);
                     ps.setString(3, mail);
                     ps.setString(4, gender);
                     ps.setString(5, pass);
+                    ps.setBlob(6, imgStream);
                     ps.executeUpdate();
                 }
 

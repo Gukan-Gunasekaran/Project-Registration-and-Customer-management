@@ -21,7 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                  style="
                  height: 75px;
                  background: linear-gradient(135deg, #d90429, #ef233c);">
-                <h2>DEVELOPER BLOODS</h2>
+                <h2>introvertz solutions</h2>
             </div>
         
 
@@ -29,10 +29,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <!-- Card Body -->
         <div class="card-body">
             <div class="d-flex align-items-center rounded p-2 mb-3">
-                <img src="images/brand-logo.jpg" 
-                     class="border border-dark rounded me-3" 
+                <img
+                     class="border border-dark rounded me-3" id="profileImg"
                      height="90" width="90" alt="Profile Picture"
-                    >
+                   name="" >
                 <div class="fw-bold text-dark fs-5 text-decoration-underline">Profile</div>
             </div>
 
@@ -60,7 +60,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
 </body>
 <script src="theme.js"></script>
-<script>
+<!--<script>
     fetch("Profile")
             .then(response => {
                 if (!response.ok) {
@@ -81,6 +81,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             })
             .catch(error => console.error('Error:', error));
 </script>
+-->
+
+<script>
+    fetch("Profile")
+.then(response => {
+    if (!response.ok) {
+        window.location.href = "login.html";
+        return;
+    }
+    return response.json();
+})
+.then(data => {
+    if (!data) return;
+
+    const user = data[0];
+
+    document.getElementById("name").textContent += user.name;
+    document.getElementById("age").textContent += user.age;
+    document.getElementById("mail").textContent += user.mail;
+    document.getElementById("gender").textContent += user.gender;
+
+    // 🔥 SET IMAGE SOURCE HERE
+    document.getElementById("profileImg").src =
+        `ProfileImage?mail=${user.mail}`;
+});
+    </script>
 
 </body>
 
